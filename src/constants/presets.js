@@ -1,0 +1,115 @@
+export const DEFAULT_PRESET_ID = "monsoon-forest";
+
+export const PRESETS = {
+  "sakura-breeze": {
+    id: "sakura-breeze",
+    name: "Sakura Breeze",
+    scale: "hirajoshi",
+    rootNote: "D",
+    traversal: "dfs",
+    mode: "tree",
+    params: {
+      depth: 6,
+      branchAngle: 28,
+      lengthDecay: 0.74,
+      windSway: 0.55,
+      tempo: 68,
+      spreadRatio: 0.56,
+      rippleDecay: 0.58,
+    },
+    ambient: {
+      rain: { enabled: false, volume: 0.2 },
+      wind: { enabled: true, volume: 0.38 },
+      forest: { enabled: false, volume: 0.25 },
+    },
+    palette: {
+      bgTop: "#0e0b0f",
+      bgBottom: "#171118",
+      trunk: "#6a4c45",
+      branchMid: "#876058",
+      leaf: "#e7a9bb",
+      leafTip: "#f7d4de",
+      activeGlow: "#f9dce5",
+      particle: "#f2b8c9",
+      rippleBase: "#b58594",
+      rippleInner: "#f3c6d4",
+      accent: "#e7a9bb",
+    },
+  },
+  "midnight-zen": {
+    id: "midnight-zen",
+    name: "Midnight Zen",
+    scale: "pentatonic",
+    rootNote: "C",
+    traversal: "bfs",
+    mode: "ripples",
+    params: {
+      depth: 5,
+      branchAngle: 32,
+      lengthDecay: 0.72,
+      windSway: 0.3,
+      tempo: 56,
+      spreadRatio: 0.62,
+      rippleDecay: 0.56,
+    },
+    ambient: {
+      rain: { enabled: true, volume: 0.35 },
+      wind: { enabled: true, volume: 0.16 },
+      forest: { enabled: false, volume: 0.2 },
+    },
+    palette: {
+      bgTop: "#06090c",
+      bgBottom: "#0e151a",
+      trunk: "#4b5961",
+      branchMid: "#62737c",
+      leaf: "#8eb8ad",
+      leafTip: "#cde3dc",
+      activeGlow: "#e2f2ed",
+      particle: "#b8d8ce",
+      rippleBase: "#5e7c85",
+      rippleInner: "#b8dad1",
+      accent: "#8eb8ad",
+    },
+  },
+  "monsoon-forest": {
+    id: "monsoon-forest",
+    name: "Monsoon Forest",
+    scale: "pentatonic",
+    rootNote: "F",
+    traversal: "dfs",
+    mode: "tree",
+    params: {
+      depth: 7,
+      branchAngle: 26,
+      lengthDecay: 0.75,
+      windSway: 0.42,
+      tempo: 62,
+      spreadRatio: 0.54,
+      rippleDecay: 0.55,
+    },
+    ambient: {
+      rain: { enabled: true, volume: 0.26 },
+      wind: { enabled: false, volume: 0.18 },
+      forest: { enabled: true, volume: 0.4 },
+    },
+    palette: {
+      bgTop: "#060907",
+      bgBottom: "#0d150f",
+      trunk: "#724436",
+      branchMid: "#84523f",
+      leaf: "#49a84f",
+      leafTip: "#8bd47e",
+      activeGlow: "#c6f0b8",
+      particle: "#8cd47e",
+      rippleBase: "#4e7b56",
+      rippleInner: "#9bd693",
+      accent: "#6ec470",
+    },
+  },
+};
+
+export const PRESET_LIST = Object.values(PRESETS);
+
+export function getPreset(presetId) {
+  return PRESETS[presetId] || PRESETS[DEFAULT_PRESET_ID];
+}
