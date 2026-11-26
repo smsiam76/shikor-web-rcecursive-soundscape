@@ -4,7 +4,7 @@
 :root {
   color-scheme: dark;
   --surface-bg: #080b09;
-  --glass-bg: rgba(15, 19, 17, 0.58);
+  --glass-bg: rgba(14, 18, 16, 0.56);
   --glass-border: rgba(255, 255, 255, 0.09);
   --glass-highlight: rgba(255, 255, 255, 0.16);
 }
@@ -22,16 +22,16 @@ body {
 
 .glass-panel {
   background: var(--glass-bg);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
   border: 1px solid var(--glass-border);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.42);
+  box-shadow: 0 14px 44px rgba(0, 0, 0, 0.45);
 }
 
 .glass-pill {
-  background: rgba(15, 19, 17, 0.5);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(14, 18, 16, 0.48);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   border: 1px solid var(--glass-border);
 }
 
@@ -46,6 +46,39 @@ body {
 .glass-scroll::-webkit-scrollbar-thumb {
   background: rgba(255, 255, 255, 0.14);
   border-radius: 9999px;
+}
+
+.calm-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 4px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.14);
+  cursor: pointer;
+}
+
+.calm-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 9999px;
+  background: #e5ebe7;
+  border: 1px solid rgba(0, 0, 0, 0.35);
+  transition: transform 140ms ease, background-color 140ms ease;
+}
+
+.calm-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+  background: #ffffff;
+}
+
+.calm-slider::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border-radius: 9999px;
+  background: #e5ebe7;
+  border: 1px solid rgba(0, 0, 0, 0.35);
 }
 
 *:focus-visible {

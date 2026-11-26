@@ -84,14 +84,25 @@ export function generateRecursiveRipples(params) {
   };
 }
 
-export function computeRipplesLayout(structure, params, viewport, time = 0, pointer = null) {
+export function computeRipplesLayout(
+  structure,
+  params,
+  viewport,
+  time = 0,
+  pointer = null,
+  layoutOptions = {}
+) {
   if (!structure || structure.mode !== "ripples") return;
 
   const { width, height } = viewport;
   const windSway = clamp(params.windSway ?? 0.35, 0, 1);
-  const baseRadius = Math.min(width, height) * 0.2;
+
+  const safeBottomReserve = clamp(layoutOptions.bottomOffset ?? 0, 0, height * 0.36);
+  const topPadding = 56;
+  const availableHeight = Math.max(220, height - safeBottomReserve - topPadding - 16);
+  const baseRadius = Math.min(width, availableHeight) * 0.21;
   const centerX = width * 0.5;
-  const centerY = height * 0.48;
+  const centerY = topPadding + availableHeight * 0.5;
   const driftRotation = time * (0.04 + windSway * 0.08);
 
   for (const node of structure.nodes) {
@@ -100,8 +111,8 @@ export function computeRipplesLayout(structure, params, viewport, time = 0, poin
     const rotatedY =
       node.normX * Math.sin(driftRotation) + node.normY * Math.cos(driftRotation);
 
-    let cx = centerX + rotatedX * baseRadius * 1.35;
-    let cy = centerY + rotatedY * baseRadius * 1.35;
+    let cx = centerX + rotatedX * baseRadius * 1.32;
+    let cy = centerY + rotatedY * baseRadius * 1.32;
     let radius =
       baseRadius *
       node.lengthRatio *

@@ -88,20 +88,31 @@ export function generateFractalTree(params) {
   };
 }
 
-export function computeTreeLayout(structure, params, viewport, time = 0, pointer = null) {
+export function computeTreeLayout(
+  structure,
+  params,
+  viewport,
+  time = 0,
+  pointer = null,
+  layoutOptions = {}
+) {
   if (!structure || structure.mode !== "tree") return;
 
   const { width, height } = viewport;
   const windSway = clamp(params.windSway ?? 0.4, 0, 1);
   const decay = clamp(params.lengthDecay ?? 0.74, 0.52, 0.84);
 
-  const usableHeight = Math.min(height * 0.74, width * 0.68);
+  const safeBottomReserve = clamp(layoutOptions.bottomOffset ?? 0, 0, height * 0.36);
+  const topPadding = 68;
+  const rootY = height - Math.max(height * 0.08, safeBottomReserve + 22);
+  const availableHeight = Math.max(200, rootY - topPadding);
+
+  const usableHeight = Math.min(availableHeight * 0.9, width * 0.66);
   const geometricSum = (1 - Math.pow(decay, structure.maxDepth + 1)) / Math.max(0.15, 1 - decay);
-  const baseLength = clamp((usableHeight / geometricSum) * 0.94, 42, height * 0.27);
-  const baseThickness = clamp(baseLength * 0.14, 5, 16);
+  const baseLength = clamp((usableHeight / geometricSum) * 0.94, 34, availableHeight * 0.32);
+  const baseThickness = clamp(baseLength * 0.14, 4.5, 15);
 
   const rootX = width * 0.5;
-  const rootY = height * 0.88;
 
   for (const node of structure.nodes) {
     const parent = node.parentId ? structure.nodeMap[node.parentId] : null;
